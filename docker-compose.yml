@@ -1,11 +1,12 @@
-
-
 services:
   mongodb:
     image: mongo
     container_name: mongodb
-    ports:
-      - "27017:27017"
+    # Note: Port 27017 is not exposed externally to satisfy the requirement
+    # that only the gateway's port is exposed externally. MongoDB is reachable
+    # internally by microservices on the 'campus-network'.
+    # ports:
+    #   - "27017:27017"
     volumes:
       - mongodb_data:/data/db
     networks:
